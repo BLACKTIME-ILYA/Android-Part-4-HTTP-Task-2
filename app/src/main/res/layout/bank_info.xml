@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bank"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="New Text"
+            android:id="@+id/bank_title"
+            android:layout_column="2" />
+    </TableRow>
+
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="2"
+            android:text="@string/currency_eur_title" />
+
+        <TextView
+            android:id="@+id/currency_eur_buy_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="9"
+            android:layout_marginLeft="25dp"
+            tools:text="6.8500" />
+
+        <TextView
+            android:id="@+id/currency_eur_sale_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="11"
+            android:layout_marginLeft="25dp"
+            tools:text="6.8500" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="2"
+            android:text="@string/currency_usd_title" />
+
+        <TextView
+            android:id="@+id/currency_usd_buy_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="9"
+            android:layout_marginLeft="25dp"
+            tools:text="6.8500" />
+
+        <TextView
+            android:id="@+id/currency_usd_sale_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="11"
+            android:layout_marginLeft="25dp"
+            tools:text="6.8500" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="2"
+            android:text="@string/currency_rub_title" />
+
+        <TextView
+            android:id="@+id/currency_rub_buy_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="9"
+            android:layout_marginLeft="25dp"
+            tools:text="6.8500" />
+
+        <TextView
+            android:id="@+id/currency_rub_sale_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="11"
+            android:layout_marginLeft="25dp"
+            tools:text="6.8500" />
+    </TableRow>
+
+</TableLayout>

@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Android. Part V Task 2</string>
+    <string name="buy_text">Покупка</string>
+    <string name="sale_text">Продажа</string>
+    <string name="currency_eur_title">EUR</string>
+    <string name="currency_usd_title">USD</string>
+    <string name="currency_rub_title">RUB</string>
+    <string name="button_openinfo_text">Open Info</string>
+    <string name="title_activity_main2">Main2Activity</string>
+</resources>
