@@ -15,35 +15,5 @@
         android:id="@+id/recycler_list"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_above="@+id/button_info" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/button_openinfo_text"
-        android:id="@+id/button_info"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
-    <!--android:layout_above="@+id/textView2"-->
-
-
-    <!--<TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_column="9"
-        android:text="@string/buy_text"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_column="11"
-        android:text="@string/sale_text"
-        android:layout_above="@+id/textView"
-        android:layout_centerHorizontal="true" />-->
 </RelativeLayout>
