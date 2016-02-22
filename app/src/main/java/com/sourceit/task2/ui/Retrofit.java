@@ -1,5 +1,7 @@
 package com.sourceit.task2.ui;
 
+import java.util.List;
+
 import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.http.GET;
@@ -8,7 +10,7 @@ import retrofit.http.GET;
  * Created by User on 17.02.2016.
  */
 public class Retrofit {
-    private static final String ENDPOINT = "http://resources.finance.ua/ru/public/";
+    private static final String ENDPOINT = "https://api.privatbank.ua/p24api/pboffice?json&city=&address=";
     private static ApiInterface apiInterface;
 
     static {
@@ -19,8 +21,8 @@ public class Retrofit {
         //        @Headers({
 //                "Content-type: application/json"
 //        })
-        @GET("/currency-cash.json")
-        void getBanks(Callback<System> callback);
+        @GET("/")
+        void getBanks(Callback<List<Bank>> callback);
     }
 
     public static void initialize() {
@@ -31,7 +33,7 @@ public class Retrofit {
         apiInterface = restAdapter.create(ApiInterface.class);
     }
 
-    public static void getBanks(Callback<System> callback) {
+    public static void getBanks(Callback<List<Bank>> callback) {
         apiInterface.getBanks(callback);
     }
 }

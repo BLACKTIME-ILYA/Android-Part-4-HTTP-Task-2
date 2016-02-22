@@ -1,10 +1,12 @@
 <resources>
-    <string name="app_name">Android. Part V Task 2</string>
-    <string name="buy_text">Покупка</string>
-    <string name="sale_text">Продажа</string>
-    <string name="currency_eur_title">EUR</string>
-    <string name="currency_usd_title">USD</string>
-    <string name="currency_rub_title">RUB</string>
-    <string name="button_openinfo_text">Open Info</string>
-    <string name="title_activity_main2">Main2Activity</string>
+    <string name="app_name">Android. Part VI Task 2.2</string>
+    <string name="bank_name_text">Название :</string>
+    <string name="bank_city_text">Город :</string>
+    <string name="bank_address_text">Адресс:</string>
+    <string name="bank_phone_text">Телефон:</string>
+    <string name="fileName_string">jsonBanks</string>
+    <string-array name="filters">
+        <item>по названию отделения</item>
+        <item>по городу</item>
+    </string-array>
 </resources>
