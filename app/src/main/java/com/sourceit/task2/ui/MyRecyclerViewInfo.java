@@ -26,13 +26,10 @@ public class MyRecyclerViewInfo extends RecyclerView.Adapter<MyRecyclerViewInfo.
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.bankTitle.setText(banks.get(position).title);
-        holder.currencyEurBuy.setText(banks.get(position).currencies.EUR.bid);
-        holder.currencyEurSale.setText(banks.get(position).currencies.EUR.ask);
-        holder.currencyUsdBuy.setText(banks.get(position).currencies.USD.bid);
-        holder.currencyUsdSale.setText(banks.get(position).currencies.USD.ask);
-        holder.currencyRubBuy.setText((banks.get(position).currencies.RUB.bid));
-        holder.currencyRubSale.setText((banks.get(position).currencies.RUB.ask));
+        holder.bankTitle.setText(banks.get(position).name);
+        holder.bankCity.setText(banks.get(position).city);
+        holder.bankAddress.setText(banks.get(position).address);
+        holder.bankPhone.setText(banks.get(position).phone);
     }
 
     @Override
@@ -42,23 +39,17 @@ public class MyRecyclerViewInfo extends RecyclerView.Adapter<MyRecyclerViewInfo.
 
     class ViewHolder extends RecyclerView.ViewHolder {
         private TextView bankTitle;
-        private TextView currencyEurBuy;
-        private TextView currencyEurSale;
-        private TextView currencyUsdBuy;
-        private TextView currencyUsdSale;
-        private TextView currencyRubBuy;
-        private TextView currencyRubSale;
+        private TextView bankCity;
+        private TextView bankAddress;
+        private TextView bankPhone;
 
 
         public ViewHolder(View itemView) {
             super(itemView);
-            bankTitle = (TextView) itemView.findViewById(R.id.bank_title);
-            currencyEurBuy = (TextView) itemView.findViewById(R.id.currency_eur_buy_value);
-            currencyEurSale = (TextView) itemView.findViewById(R.id.currency_eur_sale_value);
-            currencyUsdBuy = (TextView) itemView.findViewById(R.id.currency_usd_buy_value);
-            currencyUsdSale = (TextView) itemView.findViewById(R.id.currency_usd_sale_value);
-            currencyRubBuy = (TextView) itemView.findViewById(R.id.currency_rub_buy_value);
-            currencyRubSale = (TextView) itemView.findViewById(R.id.currency_rub_sale_value);
+            bankTitle = (TextView) itemView.findViewById(R.id.bank_name);
+            bankCity = (TextView) itemView.findViewById(R.id.bank_city);
+            bankAddress = (TextView) itemView.findViewById(R.id.bank_address);
+            bankPhone = (TextView) itemView.findViewById(R.id.bank_phone);
         }
     }
 }
