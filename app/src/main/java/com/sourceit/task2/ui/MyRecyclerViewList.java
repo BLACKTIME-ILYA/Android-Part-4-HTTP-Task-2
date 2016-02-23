@@ -9,6 +9,7 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.sourceit.task2.R;
+import com.sourceit.task2.ui.BankClasses.Bank;
 import com.sourceit.task2.utils.L;
 
 import java.util.ArrayList;

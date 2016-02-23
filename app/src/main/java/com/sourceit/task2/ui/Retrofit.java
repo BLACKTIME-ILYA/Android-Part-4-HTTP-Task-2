@@ -1,5 +1,7 @@
 package com.sourceit.task2.ui;
 
+import com.sourceit.task2.ui.BankClasses.SystemBank;
+
 import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.http.GET;
@@ -20,7 +22,7 @@ public class Retrofit {
 //                "Content-type: application/json"
 //        })
         @GET("/currency-cash.json")
-        void getBanks(Callback<System> callback);
+        void getBanks(Callback<SystemBank> callback);
     }
 
     public static void initialize() {
@@ -31,7 +33,7 @@ public class Retrofit {
         apiInterface = restAdapter.create(ApiInterface.class);
     }
 
-    public static void getBanks(Callback<System> callback) {
+    public static void getBanks(Callback<SystemBank> callback) {
         apiInterface.getBanks(callback);
     }
 }

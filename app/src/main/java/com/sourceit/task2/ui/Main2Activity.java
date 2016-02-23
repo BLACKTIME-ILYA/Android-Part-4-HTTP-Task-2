@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.sourceit.task2.R;
+import com.sourceit.task2.ui.BankClasses.Bank;
 
 import java.util.ArrayList;
 
