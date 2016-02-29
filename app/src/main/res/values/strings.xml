@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">Android. Part VI Task 2</string>
-    <string name="bank_name_text">Название :</string>
-    <string name="bank_city_text">Город :</string>
-    <string name="bank_address_text">Адресс:</string>
-    <string name="bank_phone_text">Телефон:</string>
-    <string name="fileName_string">jsonBanks</string>
+    <string name="app_name">Android. Part VII Task 1</string>
+    <string name="translation_de_text">de</string>
+    <string name="translation_es_text">es</string>
+    <string name="translation_fr_text">fr</string>
+    <string name="translation_ja_text">ja</string>
+    <string name="translation_it_text">it</string>
 </resources>

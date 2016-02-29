@@ -1,5 +1,7 @@
 package com.sourceit.task2.ui;
 
+import com.sourceit.task2.ui.model.Country;
+
 import java.util.List;
 
 import retrofit.Callback;
@@ -10,7 +12,7 @@ import retrofit.http.GET;
  * Created by User on 17.02.2016.
  */
 public class Retrofit {
-    private static final String ENDPOINT = "https://api.privatbank.ua/p24api/pboffice?json&city=&address=";
+    private static final String ENDPOINT = "https://restcountries.eu/rest/v1/all";
     private static ApiInterface apiInterface;
 
     static {
@@ -22,7 +24,7 @@ public class Retrofit {
 //                "Content-type: application/json"
 //        })
         @GET("/")
-        void getBanks(Callback<List<Bank>> callback);
+        void getBanks(Callback<List<Country>> callback);
     }
 
     public static void initialize() {
@@ -33,7 +35,7 @@ public class Retrofit {
         apiInterface = restAdapter.create(ApiInterface.class);
     }
 
-    public static void getBanks(Callback<List<Bank>> callback) {
+    public static void getBanks(Callback<List<Country>> callback) {
         apiInterface.getBanks(callback);
     }
 }

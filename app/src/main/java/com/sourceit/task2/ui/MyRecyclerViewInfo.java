@@ -7,49 +7,55 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.sourceit.task2.R;
+import com.sourceit.task2.ui.model.Country;
 
 import java.util.ArrayList;
 
 
 public class MyRecyclerViewInfo extends RecyclerView.Adapter<MyRecyclerViewInfo.ViewHolder> {
-    ArrayList<Bank> banks;
+    ArrayList<Country> countries;
 
-    public MyRecyclerViewInfo(ArrayList<Bank> banks) {
-        this.banks = banks;
+    public MyRecyclerViewInfo(ArrayList<Country> countries) {
+        this.countries = countries;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.bank_info, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.country, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.bankTitle.setText(banks.get(position).name);
-        holder.bankCity.setText(banks.get(position).city);
-        holder.bankAddress.setText(banks.get(position).address);
-        holder.bankPhone.setText(banks.get(position).phone);
+        holder.countryName.setText(countries.get(position).name);
+        holder.translationDe.setText(countries.get(position).translations.de);
+        holder.translationEs.setText(countries.get(position).translations.es);
+        holder.translationFr.setText(countries.get(position).translations.fr);
+        holder.translationJa.setText(countries.get(position).translations.ja);
+        holder.translationIt.setText(countries.get(position).translations.it);
     }
 
     @Override
     public int getItemCount() {
-        return banks.size();
+        return countries.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView bankTitle;
-        private TextView bankCity;
-        private TextView bankAddress;
-        private TextView bankPhone;
-
+        private TextView countryName;
+        private TextView translationDe;
+        private TextView translationEs;
+        private TextView translationFr;
+        private TextView translationJa;
+        private TextView translationIt;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            bankTitle = (TextView) itemView.findViewById(R.id.bank_name);
-            bankCity = (TextView) itemView.findViewById(R.id.bank_city);
-            bankAddress = (TextView) itemView.findViewById(R.id.bank_address);
-            bankPhone = (TextView) itemView.findViewById(R.id.bank_phone);
+            countryName = (TextView) itemView.findViewById(R.id.country_name);
+            translationDe = (TextView) itemView.findViewById(R.id.translation_de_value);
+            translationEs = (TextView) itemView.findViewById(R.id.translation_es_value);
+            translationFr = (TextView) itemView.findViewById(R.id.translation_fr_value);
+            translationJa = (TextView) itemView.findViewById(R.id.translation_ja_value);
+            translationIt = (TextView) itemView.findViewById(R.id.translation_it_value);
         }
     }
 }
