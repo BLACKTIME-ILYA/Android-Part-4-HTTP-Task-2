@@ -11,14 +11,18 @@ import com.sourceit.task2.utils.L;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.sourceit.task2.ui.DataBaseCreator.CommunicationColumns.IDCOUNTRY;
+import static com.sourceit.task2.ui.DataBaseCreator.CommunicationColumns.IDREGION;
+import static com.sourceit.task2.ui.DataBaseCreator.CommunicationColumns.IDSUBREGION;
+import static com.sourceit.task2.ui.DataBaseCreator.CommunicationColumns.TABLE_NAME_COMMUNICATIONS;
+import static com.sourceit.task2.ui.DataBaseCreator.CountryCoulumns.CAPITAL;
 import static com.sourceit.task2.ui.DataBaseCreator.CountryCoulumns.NAME;
+import static com.sourceit.task2.ui.DataBaseCreator.CountryCoulumns.POPULATION;
 import static com.sourceit.task2.ui.DataBaseCreator.CountryCoulumns.TABLE_NAME_COUNTRIES;
-import static com.sourceit.task2.ui.DataBaseCreator.TranslationsColumns.DE;
-import static com.sourceit.task2.ui.DataBaseCreator.TranslationsColumns.ES;
-import static com.sourceit.task2.ui.DataBaseCreator.TranslationsColumns.FR;
-import static com.sourceit.task2.ui.DataBaseCreator.TranslationsColumns.IT;
-import static com.sourceit.task2.ui.DataBaseCreator.TranslationsColumns.JA;
-import static com.sourceit.task2.ui.DataBaseCreator.TranslationsColumns.TABLE_NAME_TRANSLATIONS;
+import static com.sourceit.task2.ui.DataBaseCreator.RegionColumns.REGION;
+import static com.sourceit.task2.ui.DataBaseCreator.RegionColumns.TABLE_NAME_REGIONS;
+import static com.sourceit.task2.ui.DataBaseCreator.SubregionColumns.SUBREGION;
+import static com.sourceit.task2.ui.DataBaseCreator.SubregionColumns.TABLE_NAME_SUBREGIONS;
 
 /**
  * Created by User on 29.02.2016.
@@ -43,26 +47,43 @@ public class DataBaseMaster {
         return instance;
     }
 
-    public void addCountry(Country country) {
+    public void addType(String value, String type){
         ContentValues cv = new ContentValues();
-        ContentValues cv_translations = new ContentValues();
+        if (type.equals(REGION)) {
+            cv.put(REGION, value);
+            database.insert(TABLE_NAME_REGIONS, null, cv);
+        } else if (type.equals(SUBREGION)){
+            cv.put(SUBREGION, value);
+            database.insert(TABLE_NAME_SUBREGIONS, null, cv);
+        }
+    }
 
+    public void addType(Country country){
+        ContentValues cv = new ContentValues();
         cv.put(NAME, country.name);
+        cv.put(CAPITAL, country.capital);
+        cv.put(POPULATION, country.population);
+        database.insert(TABLE_NAME_COUNTRIES, null, cv);
+    }
 
-        cv_translations.put(DE, country.translations.de);
-        cv_translations.put(ES, country.translations.es);
-        cv_translations.put(FR, country.translations.fr);
-        cv_translations.put(JA, country.translations.ja);
-        cv_translations.put(IT, country.translations.it);
-        database.insert(TABLE_NAME_TRANSLATIONS, null, cv_translations);
-        long id = database.insert(TABLE_NAME_COUNTRIES, null, cv);
-        L.d("addCountry", String.valueOf(id));
+    public void addType(int idcountry, int idregion, int idsubregion){
+        ContentValues cv = new ContentValues();
+        cv.put(IDCOUNTRY, idcountry);
+        cv.put(IDREGION, idregion);
+        cv.put(IDSUBREGION, idsubregion);
+        database.insert(TABLE_NAME_COMMUNICATIONS, null, cv);
     }
 
     public List<Country> getAllCountry() {
-        final String MY_QUERY = "SELECT * FROM " + TABLE_NAME_COUNTRIES + " INNER JOIN " + TABLE_NAME_TRANSLATIONS + " ON "
-                + TABLE_NAME_COUNTRIES + "." + "_ID" + " = " +
-                TABLE_NAME_TRANSLATIONS + "." + "_ID";
+        final String MY_QUERY = "SELECT * FROM " + TABLE_NAME_COMMUNICATIONS + " INNER JOIN " + TABLE_NAME_COUNTRIES + " ON "
+                + TABLE_NAME_COMMUNICATIONS + "." + "IDCOUNTRY" + " = " +
+                TABLE_NAME_COUNTRIES + "." + "_ID" +
+                " INNER JOIN " + TABLE_NAME_REGIONS + " ON "
+                + TABLE_NAME_COMMUNICATIONS + "." + "IDREGION" + " = " +
+                TABLE_NAME_REGIONS + "." + "_ID" +
+                " INNER JOIN " + TABLE_NAME_SUBREGIONS + " ON "
+                + TABLE_NAME_COMMUNICATIONS + "." + "IDSUBREGION" + " = " +
+                TABLE_NAME_SUBREGIONS + "." + "_ID";
 
         Cursor cursor = database.rawQuery(MY_QUERY, null);
         List<Country> list = new ArrayList<>();
@@ -70,12 +91,14 @@ public class DataBaseMaster {
         while (!cursor.isAfterLast()) {
             Country country = new Country();
             country.name = cursor.getString(cursor.getColumnIndex(NAME));
-            country.translations.de = cursor.getString(cursor.getColumnIndex(DE));
-            country.translations.es = cursor.getString(cursor.getColumnIndex(ES));
-            country.translations.fr = cursor.getString(cursor.getColumnIndex(FR));
-            country.translations.ja = cursor.getString(cursor.getColumnIndex(JA));
-            country.translations.it = cursor.getString(cursor.getColumnIndex(IT));
-            L.d("getAllCountries", "name: " + country.name);
+            country.capital = cursor.getString(cursor.getColumnIndex(CAPITAL));
+            country.population = cursor.getString(cursor.getColumnIndex(POPULATION));
+            country.region = cursor.getString(cursor.getColumnIndex(REGION));
+            country.subregion = cursor.getString(cursor.getColumnIndex(SUBREGION));
+
+            L.d("name: " + country.name);
+            L.d("capital: " + country.capital);
+            L.d("subregion: " + country.subregion);
             list.add(country);
             cursor.moveToNext();
         }

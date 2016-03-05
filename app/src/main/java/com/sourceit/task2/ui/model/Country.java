@@ -5,5 +5,8 @@ package com.sourceit.task2.ui.model;
  */
 public class Country {
     public String name;
-    public Translations translations = new Translations();
+    public String capital;
+    public String region;
+    public String subregion;
+    public String population;
 }

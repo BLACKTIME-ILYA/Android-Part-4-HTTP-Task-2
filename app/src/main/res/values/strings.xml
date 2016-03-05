@@ -1,8 +1,11 @@
 <resources>
-    <string name="app_name">Android. Part VII Task 1</string>
-    <string name="translation_de_text">de</string>
-    <string name="translation_es_text">es</string>
-    <string name="translation_fr_text">fr</string>
-    <string name="translation_ja_text">ja</string>
-    <string name="translation_it_text">it</string>
+    <string name="app_name">Android. Part IX Task 1</string>
+    <string name="registration_name_hint">Имя</string>
+    <string name="registration_password_hint">Пароль</string>
+    <string name="registration_country_hint">Страна обитания</string>
+    <string name="button_registration_text">Регистрация</string>
+    <string name="login_name_hint">Логин</string>
+    <string name="button_login_text">Авторизация</string>
+    <string name="answer_hint">Введите ответ!</string>
+    <string name="button_answer_text">Подтвердить</string>
 </resources>
