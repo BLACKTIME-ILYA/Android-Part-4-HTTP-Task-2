@@ -1,61 +1,110 @@
 package com.sourceit.task2.ui;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.sourceit.task2.R;
-import com.sourceit.task2.ui.model.Country;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
+import static com.sourceit.task2.ui.Countries.countryList;
+import static com.sourceit.task2.ui.DataBaseCreator.CountryCoulumns.NAME;
+import static com.sourceit.task2.ui.RegistrationActivity.CURRENT;
+import static com.sourceit.task2.ui.RegistrationActivity.PASSWORD;
+import static com.sourceit.task2.ui.RegistrationActivity.REGISTER;
+import static com.sourceit.task2.ui.RegistrationActivity.REGISTRATION;
+import static com.sourceit.task2.ui.RegistrationActivity.UNREGISTER;
+
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
-    private LinearLayoutManager layoutManager;
-    private List<Country> countryList;
+    private Button login;
+    private EditText name;
+    private EditText password;
+    private Button registration;
+
+    private Intent intent;
+    private SharedPreferences sp;
+
+    private HashSet users;
+    private String currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_list);
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
+        init();
 
-        if (DataBaseMaster.getInstance(this).getAllCountry().isEmpty()) {
-            Retrofit.getBanks(new Callback<List<Country>>() {
-                @Override
-                public void success(List<Country> countries, Response response) {
-                    countryList = countries;
+        users = (HashSet) sp.getStringSet(NAME, users);
 
-                    setAdapter();
+        registration.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent = new Intent(MainActivity.this, RegistrationActivity.class);
+                startActivity(intent);
+            }
+        });
 
-                    for (Country country : countries) {
-                        DataBaseMaster.getInstance(getApplicationContext()).addCountry(country);
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (name.getText().toString().equals("") || password.getText().toString().equals("")) {
+                    String toastText = new String("Введите ");
+                    if (name.getText().toString().equals("")) {
+                        toastText += "имя, ";
+                    } else if (!users.contains(name.getText().toString())) {
+                        toastText += "зарегистрированное имя, ";
+                    }
+
+                    if (password.getText().toString().equals("")) {
+                        toastText += "пароль!";
+                    }
+
+                    toast(toastText);
+                } else {
+
+                    if (users.contains(name.getText().toString())) {
+                        currentUser = name.getText().toString();
+                        if (sp.getString(currentUser + PASSWORD, "").equals(password.getText().toString())) {
+                            intent = new Intent(MainActivity.this, MainScreenActivity.class);
+                            intent.putExtra(CURRENT, currentUser);
+                            startActivity(intent);
+                        } else {
+                            toast("пароль неверный!");
+                        }
+                    } else {
+                        toast("такого пользователя не существует!");
                     }
                 }
+            }
+        });
 
-                @Override
-                public void failure(RetrofitError error) {
-                    Toast.makeText(getApplicationContext(), "something went wrong :(", Toast.LENGTH_SHORT).show();
-                }
-            });
-        } else {
-            countryList = DataBaseMaster.getInstance(this).getAllCountry();
-            setAdapter();
+        if (sp.getString(REGISTER, UNREGISTER).equals(UNREGISTER)) {
+            intent = new Intent(MainActivity.this, RegistrationActivity.class);
+            startActivity(intent);
         }
     }
 
-    private void setAdapter() {
-        recyclerView.setAdapter(new MyRecyclerViewInfo((ArrayList) countryList));
+    private void toast(String value) {
+        Toast.makeText(getApplicationContext(), value, Toast.LENGTH_SHORT).show();
+    }
+
+    private void init() {
+        countryList = DataBaseMaster.getInstance(this).getAllCountry();
+
+        sp = getSharedPreferences(REGISTRATION, Context.MODE_PRIVATE);
+
+        registration = (Button) findViewById(R.id.button_registration_in_login);
+        login = (Button) findViewById(R.id.button_login);
+        name = (EditText) findViewById(R.id.login_name);
+        password = (EditText) findViewById(R.id.login_password);
     }
 }
