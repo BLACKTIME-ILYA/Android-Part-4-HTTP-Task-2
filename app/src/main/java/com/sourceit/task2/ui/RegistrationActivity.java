@@ -103,7 +103,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
                     String toastText = new String();
                     String selectedCountry = new String();
-                    String selectedPassword = new String();
+                    int selectedPassword = 0;
                     String selectedUser = new String();
 
                     if (users.contains(name.getText().toString())) {
@@ -125,14 +125,14 @@ public class RegistrationActivity extends AppCompatActivity {
                     if (password.getText().length() < NOPRIMITIVE) {
                         toastText += "Ваш пароль слишком простой!";
                     } else {
-                        selectedPassword = password.getText().toString();
+                        selectedPassword = password.getText().toString().hashCode();
                     }
 
-                    if (!selectedUser.equals("") && !selectedCountry.equals("") && !selectedPassword.equals("")) {
+                    if (!selectedUser.equals("") && !selectedCountry.equals("") && selectedPassword != 0) {
 
                         users.add(selectedUser);
                         editor.putStringSet(NAME, users);
-                        editor.putString(name.getText() + PASSWORD, selectedPassword);
+                        editor.putInt(name.getText() + PASSWORD, selectedPassword);
                         editor.putString(name.getText() + COUNTRY, selectedCountry);
                         editor.putString(REGISTER, REGISTER);
                         editor.apply();

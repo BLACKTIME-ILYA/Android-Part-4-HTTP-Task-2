@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
                     if (users.contains(name.getText().toString())) {
                         currentUser = name.getText().toString();
-                        if (sp.getString(currentUser + PASSWORD, "").equals(password.getText().toString())) {
+                        if (sp.getInt(currentUser + PASSWORD, 0) == password.getText().toString().hashCode()) {
                             intent = new Intent(MainActivity.this, MainScreenActivity.class);
                             intent.putExtra(CURRENT, currentUser);
                             startActivity(intent);
