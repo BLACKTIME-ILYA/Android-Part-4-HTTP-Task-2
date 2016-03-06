@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), toastText, Toast.LENGTH_SHORT).show();
                 } else {
 
-                    if (sp.getString(NAME, "").equalsIgnoreCase(name.getText().toString()) && sp.getString(PASSWORD, "").equals(password.getText().toString())) {
+                    if (sp.getString(NAME, "").equalsIgnoreCase(name.getText().toString()) && sp.getInt(PASSWORD, 0) == password.getText().toString().hashCode()) {
                         intent = new Intent(MainActivity.this, MainScreenActivity.class);
                         startActivity(intent);
                     } else {
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
                         if (!sp.getString(NAME, "").equalsIgnoreCase(name.getText().toString())) {
                             toastText += "имя, ";
                         }
-                        if (!sp.getString(PASSWORD, "").equals(password.getText().toString())) {
+                        if (sp.getInt(PASSWORD, 0) != password.getText().toString().hashCode()) {
                             toastText += "пароль!";
                         }
                         Toast.makeText(getApplicationContext(), toastText, Toast.LENGTH_SHORT).show();

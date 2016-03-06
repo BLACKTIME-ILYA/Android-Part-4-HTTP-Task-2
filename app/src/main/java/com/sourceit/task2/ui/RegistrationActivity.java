@@ -118,11 +118,11 @@ public class RegistrationActivity extends AppCompatActivity {
                     if (password.getText().length() < NOPRIMITIVE) {
                         toastText += "Ваш пароль слишком простой!";
                     } else {
-                        editor.putString(PASSWORD, password.getText().toString());
+                        editor.putInt(PASSWORD, password.getText().toString().hashCode());
                         editor.apply();
                     }
 
-                    if (!sp.getString(NAME, "").equals("") && !sp.getString(COUNTRY, "").equals("") && !sp.getString(PASSWORD, "").equals("")) {
+                    if (!sp.getString(NAME, "").equals("") && !sp.getString(COUNTRY, "").equals("") && sp.getInt(PASSWORD, 0) != 0) {
                         editor.putString(REGISTER, REGISTER);
                         editor.apply();
                         startActivity(intent);
