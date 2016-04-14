@@ -10,12 +10,13 @@ import android.widget.TextView;
 
 import com.sourceit.task2.R;
 import com.sourceit.task2.ui.BankClasses.Bank;
-import com.sourceit.task2.utils.L;
 
 import java.util.ArrayList;
 
 
 public class MyRecyclerViewList extends RecyclerView.Adapter<MyRecyclerViewList.ViewHolder> {
+
+    CheckListener listener;
     ArrayList<Bank> banks;
 
     public MyRecyclerViewList(ArrayList<Bank> banks) {
@@ -51,14 +52,16 @@ public class MyRecyclerViewList extends RecyclerView.Adapter<MyRecyclerViewList.
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     if (isChecked) {
-                        MainActivity.checkedList.add(banks.get(getAdapterPosition()));
-                        L.d("array: " + MainActivity.checkedList.size());
-                        L.d("checked");
+                        listener.checkAdd(getAdapterPosition());
                     } else {
-                        MainActivity.checkedList.remove(banks.get(getAdapterPosition()));
+                        listener.checkRemove(getAdapterPosition());
                     }
                 }
             });
         }
+    }
+
+    public void setListener(CheckListener listener) {
+        this.listener = listener;
     }
 }

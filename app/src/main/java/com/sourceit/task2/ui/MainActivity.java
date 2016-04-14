@@ -20,7 +20,7 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements CheckListener {
 
     private RecyclerView recyclerView;
     private LinearLayoutManager layoutManager;
@@ -68,6 +68,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void setAdapter() {
-        recyclerView.setAdapter(new MyRecyclerViewList(root.organizations));
+        MyRecyclerViewList myRecyclerViewList = new MyRecyclerViewList(root.organizations);
+        myRecyclerViewList.setListener(this);
+        recyclerView.setAdapter(myRecyclerViewList);
+    }
+
+    @Override
+    public void checkAdd(int position) {
+        checkedList.add(root.organizations.get(position));
+        L.d("check add position" + position);
+    }
+
+    @Override
+    public void checkRemove(int position) {
+        checkedList.remove(root.organizations.get(position));
+        L.d("check remove position" + position);
     }
 }
