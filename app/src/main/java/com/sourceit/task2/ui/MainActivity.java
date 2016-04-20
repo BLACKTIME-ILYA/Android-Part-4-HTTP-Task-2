@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         if (DataBaseMaster.getInstance(this).getAllCountry().isEmpty()) {
-            Retrofit.getBanks(new Callback<List<Country>>() {
+            Retrofit.getCountries(new Callback<List<Country>>() {
                 @Override
                 public void success(List<Country> countries, Response response) {
                     countryList = countries;

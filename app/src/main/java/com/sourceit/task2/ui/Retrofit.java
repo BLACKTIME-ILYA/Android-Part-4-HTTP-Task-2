@@ -20,11 +20,9 @@ public class Retrofit {
     }
 
     interface ApiInterface {
-        //        @Headers({
-//                "Content-type: application/json"
-//        })
+
         @GET("/")
-        void getBanks(Callback<List<Country>> callback);
+        void getCountries(Callback<List<Country>> callback);
     }
 
     public static void initialize() {
@@ -35,7 +33,7 @@ public class Retrofit {
         apiInterface = restAdapter.create(ApiInterface.class);
     }
 
-    public static void getBanks(Callback<List<Country>> callback) {
-        apiInterface.getBanks(callback);
+    public static void getCountries(Callback<List<Country>> callback) {
+        apiInterface.getCountries(callback);
     }
 }
